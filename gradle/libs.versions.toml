@@ -15,7 +15,10 @@ jackson = "2.16.2"
 
 embulk-util-file = "0.2.0"
 
-commons-compress = "1.10"
+commons-compress = "1.26.1"
+commons-codec = "1.16.1"
+commons-io = "2.16.1"
+commons-lang3 = "3.14.0"
 
 [libraries]
 
@@ -30,6 +33,9 @@ jackson-core = { group = "com.fasterxml.jackson.core", name = "jackson-core" }
 jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-databind" }
 jackson-datatype-jdk8 = { group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-jdk8" }
 commons-compress = { group = "org.apache.commons", name = "commons-compress", version.ref = "commons-compress" }
+commons-codec = { group = "commons-codec", name = "commons-codec", version.ref = "commons-codec" }
+commons-io = { group = "commons-io", name = "commons-io", version.ref = "commons-io" }
+commons-lang3 = { group = "org.apache.commons", name = "commons-lang3", version.ref = "commons-lang3" }
 
 [bundles]
 

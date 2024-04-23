@@ -44,7 +44,17 @@ dependencies {
 
     implementation libs.embulk.util.file
 
+    // Apache Commons Compress (commons-compress) has been depending on commons-codec, commons-io, and commons-lang3 since 1.26.0.
+    //
+    // It had had some internal utility classes, like Charsets and IOUtils, until 1.25.0, which were duplicated
+    // with commons-codec and commons-io. Apache Commons Compress started to reuse the original ones from 1.26.0.
+    //
+    // See: https://commons.apache.org/proper/commons-compress/changes-report.html#a1.26.0
     implementation libs.commons.compress
+
+    implementation libs.commons.codec
+    implementation libs.commons.io
+    implementation libs.commons.lang3
 }
 
 embulkPlugin {
@@ -68,6 +78,19 @@ sourcesJar {
 javadocJar {
     metaInf {
         from rootProject.file("LICENSE")
+    }
+}
+
+// A safer and strict alternative to: "dependencies" (and "dependencies --write-locks")
+//
+// This task fails explicitly when the specified dependency is not available.
+// In contrast, "dependencies (--write-locks)" does not fail even when a part the dependencies are unavailable.
+//
+// https://docs.gradle.org/8.7/userguide/dependency_locking.html#generating_and_updating_dependency_locks
+task checkDependencies {
+    notCompatibleWithConfigurationCache("The task \"checkDependencies\" filters configurations at execution time.")
+    doLast {
+        configurations.findAll { it.canBeResolved }.each { it.resolve() }
     }
 }
 
