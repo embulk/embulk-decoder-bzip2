@@ -16,7 +16,7 @@ jackson = "2.16.2"
 embulk-util-file = "0.2.0"
 
 commons-compress = "1.26.1"
-commons-codec = "1.16.1"
+commons-codec = "1.17.0"
 commons-io = "2.16.1"
 commons-lang3 = "3.14.0"
 
